@@ -1,31 +1,46 @@
 <template>
-    <div id="hideBox">
-        <div class="MainDiv" v-on:click="hideModel()">
-        </div>
-
-        <div class="centerDiv">
-            <h2 class="modalTitle">{{ nameTitle }}</h2>
-            <p class="modalContent">{{ name }}</p>
-            <slot name="links" class="slot"></slot>
+    <button @click="openModal" id="modelButton">Show Modal</button>
+    <div v-if="isModalVisible" id="hideBox">
+        <div class="MainDiv" v-on:click="hideModal()"></div>
+        <div class="centerDiv" :style="getCenterDiv()">
+            <h2 class="modalTitle" :style="getTitleStyles()">{{ nameTitle }}</h2>
+            <p class="modalContent" :style="getContentStyles()">{{ content }}</p>
+            <slot name="links"></slot>
         </div>
     </div>
-    <button id="modelButton" v-on:click="openData()">ShowModal</button>
 </template>
 <script>
 export default {
     name: 'ModalS',
-    props: ['nameTitle', 'name'],
+    props: ['nameTitle', 'content', 'theme'],
+    data() {
+        return {
+            isModalVisible: false,
+        };
+    },
     methods: {
-        openData() {
-            document.getElementById('hideBox').style.display = "block";
-            document.getElementById('modelButton').style.display = "none";
+        openModal() {
+            this.isModalVisible = true;
         },
-        hideModel() {
-            document.getElementById('hideBox').style.display = "none";
-            document.getElementById('modelButton').style.display = "flex";
-        }
+        hideModal() {
+            this.isModalVisible = false;
+        },
+        getCenterDiv() {
+            return {
+                backgroundColor: this.theme === 'loss' ? 'red' : 'green',
+            }
+        },
+        getTitleStyles() {
+            return {
+                color: this.theme === 'loss' ? 'white' : 'black',
+            };
+        },
+        getContentStyles() {
+            return {
+                color: this.theme === 'loss' ? 'white' : 'black',
+            };
+        },
     }
-
 }
 
 
@@ -40,24 +55,20 @@ export default {
 }
 
 #hideBox {
-    display: none;
+
     margin: 0;
     padding: 0;
-   
 }
 
 .MainDiv {
-   height: 100vh;
-   width: 100vw;
+    height: 100vh;
+    width: 100vw;
     z-index: 10;
-
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
     background-color: rgb(0, 0, 0, 0.2);
-
-    
 }
 
 .slot {
@@ -84,8 +95,6 @@ a {
 
 .centerDiv {
     width: fit-content;
-
-  
     margin-right: auto;
     position: absolute;
     z-index: 10;
@@ -98,7 +107,6 @@ a {
     flex-direction: column;
     gap: 1rem;
     background-color: rgb(186, 46, 46);
-
 }
 
 .modalTitle {
@@ -120,5 +128,4 @@ a {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1rem;
-}
-</style>
+}</style>

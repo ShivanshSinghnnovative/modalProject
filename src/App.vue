@@ -1,22 +1,17 @@
 <template>
   <div class="container">
-  <div class="contentBox">
-    <ModalS nameTitle="Sign up for the Giveaway!" , name="Grab your ninja swag for half Price">
-      <template #links>
-        <a href="">Google</a>
-        <a href="">Facebook</a>
-      </template>
-    </ModalS>
-    <input ref="myInput" type="text" id="input" />
-    <button @click="focusInput()" id="focusButton">Focus</button>
-
-
+    <div class="contentBox">
+      <ModalS nameTitle="Sign up for the Giveaway!" content="Grab your ninja swag for half Price" , theme="loss">
+        <template #links>
+          <a href="">Google</a>
+          <a href="">Facebook</a>
+        </template>
+      </ModalS>
+      <input ref="myInput" type="text" id="input" />
+      <button @click="focusInput()" id="focusButton">Focus</button>
+    </div>
   </div>
-</div>
 </template>
-
-  
-
 
 <script>
 import ModalS from './components/ModalS.vue'
@@ -30,16 +25,16 @@ export default {
       this.$refs.myInput.focus();
     }
   }
-
 }
 </script>
 
 <style >
-.container{
+.container {
   position: relative;
-  width : 100%;
+  width: 100%;
   height: 100vh;
 }
+
 button {
   background: #1d3027;
   color: white;
@@ -58,7 +53,6 @@ button {
   margin-top: 10%;
   padding: 5rem;
   gap: 1rem;
-
 }
 
 #input {
@@ -75,5 +69,4 @@ button {
   display: block;
   text-align: center;
   margin-top: 1rem;
-}
-</style>
+}</style>
