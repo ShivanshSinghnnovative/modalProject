@@ -1,10 +1,10 @@
 <template>
-    <button @click="openModal" id="modelButton">Show Modal</button>
-    <div v-if="isModalVisible" id="hideBox">
-        <div class="MainDiv" v-on:click="hideModal()"></div>
-        <div class="centerDiv" :style="getCenterDiv()">
-            <h2 class="modalTitle" :style="getTitleStyles()">{{ nameTitle }}</h2>
-            <p class="modalContent" :style="getContentStyles()">{{ content }}</p>
+    <div id="hideBox">
+        <div class="MainDiv" v-on:click="closeModal()"></div>
+
+        <div :class="['centerDiv', theme]">
+            <h2 :class="['modalTitle', theme]">{{ nameTitle }}</h2>
+            <p class="modalContent">{{ content }}</p>
             <slot name="links"></slot>
         </div>
     </div>
@@ -13,33 +13,11 @@
 export default {
     name: 'ModalS',
     props: ['nameTitle', 'content', 'theme'],
-    data() {
-        return {
-            isModalVisible: false,
-        };
-    },
     methods: {
-        openModal() {
-            this.isModalVisible = true;
+        closeModal() {
+            this.$emit('close');
         },
-        hideModal() {
-            this.isModalVisible = false;
-        },
-        getCenterDiv() {
-            return {
-                backgroundColor: this.theme === 'loss' ? 'red' : 'green',
-            }
-        },
-        getTitleStyles() {
-            return {
-                color: this.theme === 'loss' ? 'white' : 'black',
-            };
-        },
-        getContentStyles() {
-            return {
-                color: this.theme === 'loss' ? 'white' : 'black',
-            };
-        },
+
     }
 }
 
@@ -52,6 +30,19 @@ export default {
     font-family: sans-serif;
     overflow-x: hidden;
     overflow-y: hidden;
+}
+
+.centerDiv.sell {
+    background-color: red;
+    color: white;
+}
+
+.centerDiv.buy {
+    background-color: green;
+    color: rgb(0, 0, 0);
+}
+.modalTitle.buy{
+    color: black;
 }
 
 #hideBox {
@@ -128,4 +119,5 @@ a {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1rem;
-}</style>
+}
+</style>

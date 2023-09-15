@@ -1,12 +1,15 @@
 <template>
   <div class="container">
     <div class="contentBox">
-      <ModalS nameTitle="Sign up for the Giveaway!" content="Grab your ninja swag for half Price" , theme="loss">
+      <button @click="openModal" id="modelButton">Show Modal</button>
+      <ModalS v-if="isModalVisible" nameTitle="Sign up for the Giveaway!" content="Grab your ninja swag for half Price"
+        theme="sell" @close="closeModal">
         <template #links>
-          <a href="">Google</a>
-          <a href="">Facebook</a>
+          <a>Google</a>
+          <a>Facebook</a>
         </template>
       </ModalS>
+
       <input ref="myInput" type="text" id="input" />
       <button @click="focusInput()" id="focusButton">Focus</button>
     </div>
@@ -20,11 +23,24 @@ export default {
   components: {
     ModalS
   },
+
+  data() {
+    return {
+      isModalVisible: false,
+    };
+  },
   methods: {
+    openModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    },
     focusInput() {
       this.$refs.myInput.focus();
     }
   }
+
 }
 </script>
 
@@ -53,6 +69,7 @@ button {
   margin-top: 10%;
   padding: 5rem;
   gap: 1rem;
+
 }
 
 #input {
@@ -69,4 +86,5 @@ button {
   display: block;
   text-align: center;
   margin-top: 1rem;
-}</style>
+}
+</style>
