@@ -30,14 +30,17 @@ export default {
     overflow-x: hidden;
     overflow-y: hidden;
 }
+
 .sell {
     background-color: red;
     color: white;
 }
+
 .buy {
     background-color: green;
     color: black
 }
+
 .MainDiv {
     height: 100vh;
     width: 100vw;
@@ -50,6 +53,7 @@ export default {
     justify-content: center;
     align-items: center;
 }
+
 .centerDiv {
     width: fit-content;
     border-radius: 0.5rem;
@@ -77,10 +81,12 @@ export default {
     margin-right: auto;
     margin-bottom: 1rem;
 }
+
 .slot {
     text-align: center;
     padding: 5px;
 }
+
 a {
     border: 1px solid black;
     text-decoration: none;
@@ -96,22 +102,21 @@ a {
     background-color: grey;
 }
 
-@media  screen and (min-width:120px) and (max-width:600px) {
+@media screen and (min-width:120px) and (max-width:600px) {
     .centerDiv {
         padding: .5rem;
         gap: 0.4rem;
     }
-    
+
     .modalTitle {
         font-weight: 600;
         font-size: 18px;
         padding: .7rem 1rem;
     }
-    
+
     .modalContent {
         font-size: 15px;
         padding-bottom: 1.3rem;
     }
 }
-
 </style>

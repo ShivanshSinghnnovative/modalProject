@@ -87,22 +87,26 @@ button {
   text-align: center;
   margin-top: 1rem;
 }
-@media  screen and (min-width:120px) and (max-width:600px) {
- 
-  
-.contentBox {
-  padding: 2rem;
-}
-#input {
-  height: .8rem;
-  padding: .2rem;
-  width: 8rem;
-}
-#focusButton {
-  padding: .3rem;
-}
-#modelButton {
-  padding: .3rem;
-}
+
+@media screen and (min-width:120px) and (max-width:600px) {
+
+
+  .contentBox {
+    padding: 2rem;
+  }
+
+  #input {
+    height: .8rem;
+    padding: .2rem;
+    width: 8rem;
+  }
+
+  #focusButton {
+    padding: .3rem;
+  }
+
+  #modelButton {
+    padding: .3rem;
+  }
 }
 </style>
