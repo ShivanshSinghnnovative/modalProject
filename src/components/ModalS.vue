@@ -1,7 +1,7 @@
 <template>
     <div id="hideBox">
-        <div class="MainDiv" @click="closeModal()">
-            <div @click.stop class="centerDiv" :class="theme === 'buy' ? 'buy' : 'sell'">
+        <div class="MainDiv" @click.self="closeModal()">
+            <div :class="['centerDiv', theme === 'buy' ? 'buy' : 'sell']">
                 <h2 class='modalTitle'>{{ nameTitle }}</h2>
                 <p class="modalContent">{{ content }}</p>
                 <slot name="links"></slot>
@@ -48,7 +48,7 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgb(0, 0, 0, 0.2);
+    background-color: rgb(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
