@@ -2,13 +2,13 @@
   <div class="container">
     <div class="contentBox">
       <button @click="openModal" id="modelButton">Show Modal</button>
-      <ModalS v-if="isModalVisible" nameTitle="Sign up for the Giveaway!" content="Grab your ninja swag for half Price"
+      <ModalBox v-if="isModalVisible" nameTitle="Sign up for the Giveaway!" content="Grab your ninja swag for half Price"
         theme="sell" @close="closeModal">
         <template #links>
           <a>Google</a>
           <a>Facebook</a>
         </template>
-      </ModalS>
+      </ModalBox>
 
       <input ref="myInput" type="text" id="input" />
       <button @click="focusInput()" id="focusButton">Focus</button>
@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import ModalS from './components/ModalS.vue'
+import ModalBox from './components/ModalS.vue'
 export default {
   name: 'App',
   components: {
-    ModalS
+    ModalBox
   },
 
   data() {
@@ -86,5 +86,23 @@ button {
   display: block;
   text-align: center;
   margin-top: 1rem;
+}
+@media  screen and (min-width:120px) and (max-width:600px) {
+ 
+  
+.contentBox {
+  padding: 2rem;
+}
+#input {
+  height: .8rem;
+  padding: .2rem;
+  width: 8rem;
+}
+#focusButton {
+  padding: .3rem;
+}
+#modelButton {
+  padding: .3rem;
+}
 }
 </style>

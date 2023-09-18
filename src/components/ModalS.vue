@@ -1,23 +1,22 @@
 <template>
     <div id="hideBox">
-        <div class="MainDiv" v-on:click="closeModal()"></div>
-
-        <div :class="['centerDiv', theme]">
-            <h2 :class="['modalTitle', theme]">{{ nameTitle }}</h2>
-            <p class="modalContent">{{ content }}</p>
-            <slot name="links"></slot>
+        <div class="MainDiv" @click="closeModal()">
+            <div @click.stop class="centerDiv" :class="theme === 'buy' ? 'buy' : 'sell'">
+                <h2 class='modalTitle'>{{ nameTitle }}</h2>
+                <p class="modalContent">{{ content }}</p>
+                <slot name="links"></slot>
+            </div>
         </div>
     </div>
 </template>
 <script>
 export default {
-    name: 'ModalS',
+    name: 'ModalBox',
     props: ['nameTitle', 'content', 'theme'],
     methods: {
         closeModal() {
             this.$emit('close');
-        },
-
+        }
     }
 }
 
@@ -31,84 +30,42 @@ export default {
     overflow-x: hidden;
     overflow-y: hidden;
 }
-
-.centerDiv.sell {
+.sell {
     background-color: red;
     color: white;
 }
-
-.centerDiv.buy {
+.buy {
     background-color: green;
-    color: rgb(0, 0, 0);
+    color: black
 }
-.modalTitle.buy{
-    color: black;
-}
-
-#hideBox {
-
-    margin: 0;
-    padding: 0;
-}
-
 .MainDiv {
     height: 100vh;
     width: 100vw;
     z-index: 10;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
     background-color: rgb(0, 0, 0, 0.2);
-}
-
-.slot {
-    text-align: center;
-    padding: 5px;
-}
-
-a {
-    border: 1px solid black;
-    text-decoration: none !important;
-    padding: 5px;
-    display: inline;
-    border-radius: 2px;
-    padding: 0.5rem 1rem;
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
+    display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    color: white;
-    background-color: grey;
 }
-
 .centerDiv {
     width: fit-content;
-    margin-right: auto;
-    position: absolute;
-    z-index: 10;
     border-radius: 0.5rem;
-
-    left: 35%;
-    top: 30%;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background-color: rgb(186, 46, 46);
 }
 
 .modalTitle {
-    color: white;
     font-weight: 600;
     font-size: 33px;
     padding: 1.4rem 4rem;
 }
 
 .modalContent {
-    color: white;
     text-align: center;
     padding-bottom: 1.3rem;
 }
@@ -120,4 +77,41 @@ a {
     margin-right: auto;
     margin-bottom: 1rem;
 }
+.slot {
+    text-align: center;
+    padding: 5px;
+}
+a {
+    border: 1px solid black;
+    text-decoration: none;
+    padding: 5px;
+    display: inline;
+    border-radius: 2px;
+    padding: 0.5rem 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    justify-content: center;
+    color: white;
+    background-color: grey;
+}
+
+@media  screen and (min-width:120px) and (max-width:600px) {
+    .centerDiv {
+        padding: .5rem;
+        gap: 0.4rem;
+    }
+    
+    .modalTitle {
+        font-weight: 600;
+        font-size: 18px;
+        padding: .7rem 1rem;
+    }
+    
+    .modalContent {
+        font-size: 15px;
+        padding-bottom: 1.3rem;
+    }
+}
+
 </style>
